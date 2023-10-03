@@ -1,8 +1,13 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Navigate, useNavigate } from 'react-router-dom';
 import userPicture from '../assets/user.png'
 
 const NavBar = () => {
+  
+  const navigate = useNavigate();
+  const handleLoginCLick = () => {
+    navigate('/login')
+  }
     const navLinks = <>
      <li><NavLink to="/">Home</NavLink></li>
      <li><NavLink to="/about">About</NavLink></li>
@@ -30,7 +35,7 @@ const NavBar = () => {
   <div className="w-10 rounded-full">
           <img src={userPicture}/>
         </div>
-    <a className="btn capitalize bg-[#403F3F] text-white px-6 text-xl font-semibold">Login</a>
+    <a onClick={handleLoginCLick} className="btn capitalize bg-[#403F3F] text-white px-6 text-xl font-semibold">Login</a>
   </div>
 </div>
         </div>
