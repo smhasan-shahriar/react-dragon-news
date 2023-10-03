@@ -3,13 +3,17 @@ import { FaRegBookmark, FaShareAlt, FaEye } from "react-icons/fa";
 import ReactDOM from 'react-dom';
 
 import ReactStarsRating from 'react-awesome-stars-rating';
+import { useNavigate } from 'react-router-dom';
 
 const ReactStarsExample = ({ value }) => {
     return <ReactStarsRating className="flex" value={value} />;
   };
 
+
+
 const NewsCard = ({item}) => {
-    const {author, title, details, rating, image_url, thumbnail_url, total_view} = item
+    const navigate = useNavigate()
+    const {author, title, details, rating, image_url, _id, total_view} = item
     const [showFull, setShowFull] = useState(false);
     const detailNews = details
     const words = detailNews.split(' ');
@@ -17,8 +21,11 @@ const NewsCard = ({item}) => {
     const toggleText = () => {
         setShowFull(!showFull);
     }
+    const handleCardClick = () => {
+        navigate(`/news/${_id}`)
+    }
     return (
-        <div className='my-6'>
+        <div onClick={handleCardClick} className='my-6'>
             {/* author section  */}
             <div className='flex justify-between w-full border items-center bg-[#F3F3F3] p-4'>
                 <div className='flex gap-3 items-center'>

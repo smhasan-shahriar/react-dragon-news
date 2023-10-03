@@ -4,6 +4,7 @@ import Home from '../pages/Home';
 import Root from '../layout/Root';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
+import NewsDetailsPage from '../pages/NewsDetailsPage';
 
 const PublicRoutes = createBrowserRouter([
     {
@@ -21,6 +22,11 @@ const PublicRoutes = createBrowserRouter([
             {
                 path: "/register",
                 element: <Register></Register>
+            },
+            {
+                path: "/news/:id",
+                element: <NewsDetailsPage></NewsDetailsPage>,
+                loader: () => fetch('/news.json')
             }
         ]
     }

@@ -7,3 +7,7 @@
 body{
     color: #403F3F; 
 }
+
+.selected{
+    background-color: #E7E7E7;
+}

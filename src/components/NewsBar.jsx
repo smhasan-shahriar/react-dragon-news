@@ -14,7 +14,6 @@ const NewsBar = () => {
         fetchFunction();
     }, [])
 
-    console.log(news)
 
     const newsTitles = [];
     news.map(item => newsTitles.push(item.title));
