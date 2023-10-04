@@ -1,8 +1,22 @@
 import React from 'react';
 import NavBar from '../components/NavBar';
 import { Link } from 'react-router-dom';
+import useCustomHook from '../hooks/useCustomHook';
 
 const Register = () => {
+  const {createUser} = useCustomHook();
+  const handleSignUp = e => {
+    e.preventDefault();
+    const form = new FormData(e.currentTarget);
+    const name = form.get('name');
+    const photo = form.get('photo');
+    const email = form.get('email');
+    const password = form.get('password');
+    createUser(email, password)
+    .then(result => console.log(result.user))
+    .catch(error => console.error(error))
+
+  }
     return (
         <div>
         <NavBar></NavBar>
@@ -12,7 +26,7 @@ const Register = () => {
   <h1 className="text-5xl font-bold">Register now!</h1>
      </div>
 <div className="card flex-shrink-0 w-full max-w-sm bg-base-100">
-  <form className="card-body">
+  <form onSubmit={handleSignUp} className="card-body">
     <div className="form-control">
       <label className="label">
         <span className="label-text">Your Name</span>

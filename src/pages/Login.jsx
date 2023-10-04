@@ -1,8 +1,19 @@
 import React from 'react';
 import NavBar from '../components/NavBar';
 import { Link } from 'react-router-dom';
+import useCustomHook from '../hooks/useCustomHook';
 
 const Login = () => {
+  const {logIn} = useCustomHook()
+  const handleLogIn = (e) => {
+    e.preventDefault();
+    const form = new FormData(e.currentTarget)
+    const email = form.get('email');
+    const password = form.get('password');
+    logIn(email, password)
+    .then(result => console.log(result.user))
+    .catch(error => console.error(error))
+  }
     return (
         <div>
             <NavBar></NavBar>
@@ -12,7 +23,7 @@ const Login = () => {
       <h1 className="text-5xl font-bold">Login now!</h1>
          </div>
     <div className="card flex-shrink-0 w-full max-w-lg bg-base-100">
-      <form className="card-body">
+      <form onSubmit={handleLogIn} className="card-body">
         <div className="form-control">
           <label className="label">
             <span className="label-text">Email</span>

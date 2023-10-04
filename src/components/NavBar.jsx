@@ -1,8 +1,15 @@
 import React from 'react';
 import { NavLink, Navigate, useNavigate } from 'react-router-dom';
 import userPicture from '../assets/user.png'
+import useCustomHook from '../hooks/useCustomHook';
 
 const NavBar = () => {
+  const {user, logOut} = useCustomHook()
+  const handleLogOut = () => {
+    logOut()
+    
+  }
+  
   
   const navigate = useNavigate();
   const handleLoginCLick = () => {
@@ -32,10 +39,16 @@ const NavBar = () => {
     </ul>
   </div>
   <div className="navbar-end flex gap-4">
-  <div className="w-10 rounded-full">
+    {
+      !user ? <>
+      <div className="w-10 rounded-full">
           <img src={userPicture}/>
         </div>
-    <a onClick={handleLoginCLick} className="btn capitalize bg-[#403F3F] text-white px-6 text-xl font-semibold">Login</a>
+  <a onClick={handleLoginCLick} className="btn capitalize bg-[#403F3F] text-white px-6 text-xl font-semibold">Login</a>
+      </>:
+      <> <a onClick={handleLogOut} className="btn capitalize bg-[#403F3F] text-white px-6 text-xl font-semibold">Log Out</a></>
+    }
+  
   </div>
 </div>
         </div>

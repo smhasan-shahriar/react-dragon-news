@@ -3,6 +3,7 @@ import Header from '../components/Header';
 import NewsCard from '../components/NewsCard';
 import NewsDetails from '../components/NewsDetails';
 import RightSideBar from '../components/RightSideBar';
+import useCustomHook from '../hooks/useCustomHook';
 
 const NewsDetailsPage = () => {
     return (
