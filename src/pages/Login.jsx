@@ -1,9 +1,12 @@
 import React from 'react';
 import NavBar from '../components/NavBar';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useCustomHook from '../hooks/useCustomHook';
 
 const Login = () => {
+  const location = useLocation();
+  const navigate = useNavigate()
+ 
   const {logIn} = useCustomHook()
   const handleLogIn = (e) => {
     e.preventDefault();
@@ -11,7 +14,13 @@ const Login = () => {
     const email = form.get('email');
     const password = form.get('password');
     logIn(email, password)
-    .then(result => console.log(result.user))
+    .then(result => {
+      
+      console.log(result.user)
+      
+     navigate(location?.state ? location?.state : "/")
+    
+    })
     .catch(error => console.error(error))
   }
     return (
@@ -40,10 +49,10 @@ const Login = () => {
           </label>
         </div>
         <div className="form-control mt-6">
-          <button className="btn btn-primary capitalize bg-[#403F3F]">Login</button>
+          <button className="btn btn-primary capitalize bg-[#403F3F]"><Link to="/">Login</Link></button>
         </div>
       </form>
-      <p className='font-semibold mx-auto'>Dont Have an account? <Link to="/register"><span className='text-[#F75B5F]'>Register</span></Link></p>
+      <p className='font-semibold mx-auto'>Do not Have an account? <span className='text-[#F75B5F]'>Register</span></p>
     </div>
   </div>
 </div>
